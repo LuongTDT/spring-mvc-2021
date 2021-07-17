@@ -9,6 +9,6 @@
 </head>
 <body>
 	<h1>This is home page</h1>
-	<h4>Xin chao ${message }</h4>
+	<h4>Xin chao ${username }</h4>
 </body>
 </html>

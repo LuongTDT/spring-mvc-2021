@@ -1,5 +1,8 @@
 package com.salaryspringmvc.services;
 
-public interface UserService {
+import com.salaryspringmvc.models.User;
 
+public interface UserService {
+	User add();
+	void show();
 }

@@ -2,10 +2,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>demomvc</groupId>
-	<artifactId>study</artifactId>
+	<groupId>com.salary</groupId>
+	<artifactId>spring-mvc-2021</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>study Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<!-- create these variable to store version properties of dependencies -->
@@ -17,10 +17,6 @@
 		<jstl.version>1.2</jstl.version>
 		<java.version>1.8</java.version>
 		<log4j.version>1.2.17</log4j.version>
-		<java.mail.api.version>1.6.2</java.mail.api.version>
-		<java.mail.version>1.4.7</java.mail.version>
-		<smtp.version>2.0.0</smtp.version>
-		<snakeyaml.version>1.26</snakeyaml.version>
 		<spring.security.version>5.4.2</spring.security.version>
 	</properties>
 
@@ -62,30 +58,6 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>${java.mail.api.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>${java.mail.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>smtp</artifactId>
-			<version>${smtp.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
-		<dependency>
-			<groupId>org.yaml</groupId>
-			<artifactId>snakeyaml</artifactId>
-			<version>${snakeyaml.version}</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -125,7 +97,7 @@
 					<version>3.3.1</version>
 					<configuration>
 						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>study</warName>
+						<warName>spring-mvc-2021</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>

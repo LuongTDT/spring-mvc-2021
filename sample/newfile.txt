@@ -1,0 +1,2 @@
+sample for create new file using commandline
+commandline here

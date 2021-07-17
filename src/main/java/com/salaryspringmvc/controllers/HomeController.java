@@ -8,30 +8,28 @@ import java.nio.file.Paths;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.salaryspringmvc.models.Person;
-import com.salaryspringmvc.models.YamlReader;
-
 @Controller
 public class HomeController {
 	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 	
-	@Autowired
-	private Person person;
-	
 	@RequestMapping(method = RequestMethod.GET, value = "/home")
-	public String sayHello(ModelMap model) {
-		model.addAttribute("message", person.getName());
+	public String sayHello(ModelMap model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String username = (String) session.getAttribute("username");
+		if(username == null) {
+			return "redirect:login";
+		}
+		model.addAttribute("message", username);
 		return "home";
 	}
 	/*
@@ -53,14 +51,6 @@ public class HomeController {
 		name = (name != "" && name != null) ? name : "No data name found!";
 		
 		model.addAttribute("message", name+id);
-		return "home";
-	}
-	
-	@GetMapping(value = "/env")
-	public String getEnvironment() {
-		
-		System.out.println(new YamlReader("application.yml").readFile());
-		
 		return "home";
 	}
 	
