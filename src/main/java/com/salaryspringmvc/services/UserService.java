@@ -1,8 +1,8 @@
 package com.salaryspringmvc.services;
 
-import com.salaryspringmvc.models.User;
+import com.salaryspringmvc.models.UserInfo;
 
 public interface UserService {
-	User add();
+	UserInfo add();
 	void show();
 }

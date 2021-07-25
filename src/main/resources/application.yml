@@ -1,12 +1,5 @@
-id: 20
-name: Bruce
-year: 2020
-address: Gotham City
-department: Computer Science
-courses:
-  - name: Algorithms
-    credits: 6
-  - name: Data Structures
-    credits: 5
-  - name: Design Patterns
-    credits: 3
+dataSource:
+  database-driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/spring_mvc_2021
+  username: root
+  password: 123456

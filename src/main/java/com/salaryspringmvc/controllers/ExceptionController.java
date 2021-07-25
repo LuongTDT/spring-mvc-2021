@@ -20,14 +20,14 @@ public class ExceptionController {
 	@ExceptionHandler(value = {NoHandlerFoundException.class})
 	public String exceptionHandler(Exception exception) {
 		logger.error(exception.getMessage());
-		return "404";
+		return "error/404";
 	}
 	
 	@ExceptionHandler(Exception.class)
 	public String allExceptionHandler(Exception exception, HttpServletRequest request) {
 		logger.error(exception.getMessage());
 		request.setAttribute("message", exception.getMessage());
-		return "error";
+		return "errors/error";
 	}
 	
 
