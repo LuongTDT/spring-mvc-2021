@@ -90,7 +90,6 @@
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${spring.jdbc.version}</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>study</finalName>

@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import com.salaryspringmvc.authentication.myAuthenticationService;
+import com.salaryspringmvc.authentication.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -17,20 +17,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	DataSource dataSource;
 	
 	@Autowired
-	private myAuthenticationService authenticationService;
+	private MyUserDetailsService myUserDetailsService;
 		
 	@Autowired
-	public void  configAuthentication(AuthenticationManagerBuilder authen) throws Exception {
-		
-		authen.inMemoryAuthentication().withUser("user1").password("12345").roles("USER");
-		authen.inMemoryAuthentication().withUser("admin1").password("12345").roles("USER, ADMIN");
-		
-		authen.userDetailsService(authenticationService);
+	public void  configureGlobal(AuthenticationManagerBuilder authen) throws Exception {
 		/*
 		authen.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery("select username,password, enable from users where username=?")
 		.authoritiesByUsernameQuery("select username, role from roles where username=?");
 		 */
+//		authen.inMemoryAuthentication().withUser("user1").password("12345").roles("USER");
+//		authen.inMemoryAuthentication().withUser("admin1").password("12345").roles("USER, ADMIN");	
+		authen.userDetailsService(myUserDetailsService);
 	}
 	
 	@Override
@@ -40,7 +38,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	       //Do not requires login
 	       http.authorizeRequests().antMatchers("/", "/home", "/login", "/logout").permitAll();
 	       //Requires login 
-	       http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");	 
+	       http.authorizeRequests().antMatchers("/user-info").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");	 
 	       // For ADMIN only.
 	       http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 	       // has no permission -> redirect to 403 page
@@ -55,6 +53,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	               .usernameParameter("username")//
 	               .passwordParameter("password")
 	               //Configure for logout
-	               .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout-successful");
+	               .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login");
 	}
 }
